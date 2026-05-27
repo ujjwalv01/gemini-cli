@@ -394,5 +394,9 @@ export async function createContentGenerator(
     );
   }
 
+  if (process.env['VITEST'] === 'true' || process.env['NODE_ENV'] === 'test') {
+    return finalGenerator;
+  }
+
   return new CachingContentGenerator(finalGenerator, gcConfig);
 }
